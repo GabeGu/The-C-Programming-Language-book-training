@@ -1,36 +1,29 @@
 /* 
     <The C programming language> - 2nd Edition by K&R
-    Example 1.9: To illustrate the use of character arrays and functions to manipulate them, 
-    let's write a program that reads a set of text lines and prints the longest.
+    Exercise 1.19. Write a function reverse(s) that reverses the character string s. 
+    Use it to write a program that reverses its input a line at a time
 
-    compiler: MinGW.org GCC-8.2.0-3
+    Compiler: MinGW.org GCC-8.2.0-3
     by Gabe Gu
-    2019-4-8
+    2019-4-9
 */
 #include <stdio.h>
 
 #define MAXLINE 1000    /* maximum input line size */
 
 int getLine(char line[], int maxline);
-void copy(char to[], char from[]);
+void reverseLine(char line[], int length);
 
 /* point longest input line */
 main()
 {
     int len;                    /* current line length */
-    int max;                    /* maximum length seen so far */
     char line[MAXLINE];         /* current input line */
-    char longest[MAXLINE];      /* longest line saved here */
 
-    max = 0;
     while ((len = getLine(line, MAXLINE)) > 0) {
-        if (len > max) {
-            max = len;
-            copy(longest, line);
-        }
-    }
-    if (max > 0) {
-        printf("%s", longest);
+        //printf("%s", line);
+        reverseLine(line, len);
+        printf("%s", line);
     }
     return 0;
 }
@@ -50,11 +43,17 @@ int getLine(char s[], int lim)
     return i;
 }
 
-void copy(char to[], char from[])
+void reverseLine(char line[], int length) 
 {
-    int i = 0;
+    char swp;
 
-    while ((to[i] = from[i]) != '\0') {
-        i++;
+    if (length <= 2) return;// too short, no need to process
+
+    length--;// last char is '\n'
+    for (int i = 0; i < length/2; i++) {
+        swp = line[i];
+        line[i] = line[length - 1 - i];
+        line[length - 1 - i] = swp;
     }
 }
+
