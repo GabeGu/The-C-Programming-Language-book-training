@@ -1,3 +1,13 @@
+/* 
+    <The C programming language> - 2nd Edition by K&R
+    Exercise 2.1 Write a program to determine the ranges of char, short, int,
+    and long variables, both signed and unsigned, by printing appropriate values 
+    from standard headers and by direct computation
+
+    Compiler: MinGW.org GCC-8.2.0-3
+    by Gabe Gu
+    2019-4-9
+*/
 #include <stdio.h>
 
 int main()
