@@ -39,37 +39,30 @@ int main()
 
 int escape2(char s[], char t[])
 {
-    int i, j;
+    int i, j = 0;
 
-    for (i = 0, j = 0; t[i] != '\0'; j++) {
+    for (i = 0; t[i] != '\0'; i++) {
         switch (t[i]) {
-            case '\\': {
+            case '\\': 
                 i++;
                 switch (t[i]) {
-                    case '\0': {
-                        s[j] = '\\';
-                        break;
-                    }
-                    case 'n': {
-                        s[j] = '\n';
-                        break;
-                    }
-                    case 't': {
-                        s[j] = '\t';
-                        break;
-                    }
-                    default: {
+                    case '\0': 
                         s[j++] = '\\';
-                        s[j] = t[i];
-                    }
+                        break;
+                    case 'n': 
+                        s[j++] = '\n';
+                        break;
+                    case 't': 
+                        s[j++] = '\t';
+                        break;
+                    default: 
+                        s[j++] = '\\', s[j++] = t[i];
+                        break;
                 }
-                i++;
                 break;
-            }
-            default : {
-                s[j] = t[i++];
+            default : 
+                s[j++] = t[i];
                 break;
-            }
         }
     }
     s[j] = '\0';
@@ -78,24 +71,19 @@ int escape2(char s[], char t[])
 
 int escape(char s[], char t[])
 {
-    int i, j;
+    int i, j = 0;
 
-    for (i = 0, j = 0; t[i] != '\0'; i++) {
+    for (i = 0; t[i] != '\0'; i++) {
         switch (t[i]) {
-            case '\n': {
-                s[j++] = '\\';
-                s[j++] = 'n' ;
+            case '\n': 
+                s[j++] = '\\', s[j++] = 'n';
                 break;
-            }
-            case '\t': {
-                s[j++] = '\\';
-                s[j++] = 't' ;
+            case '\t': 
+                s[j++] = '\\', s[j++] = 't';
                 break;
-            }
-            default : {
+            default : 
                 s[j++] = t[i];
                 break;
-            }
         }
     }
     s[j] = '\0';
